@@ -1,0 +1,457 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "HTTPS://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0062)https://upsconline.nic.in/ora/oraauth/candidate/LoginFinal.php -->
+<html xmlns="HTTPS://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta http-equiv="Cache-control" content="no-cache">
+	<meta http-equiv="Cache-control" content="no-store">
+	<title>ONLINE RECRUITMENT APPLICATION (ORA) POWERD BY NIC</title>
+	<link rel="icon" href="https://upsconline.nic.in/ora/oraauth/candidate/css/images/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="https://upsconline.nic.in/ora/oraauth/candidate/css/images/ora.ico" type="image/x-icon">
+	<link rel="stylesheet" href="./satamev_files/styleouter.css" type="text/css" media="all">
+	<script type="text/javascript" src="./satamev_files/home.js.download"></script>
+	<script type="text/javascript" src="./satamev_files/validsec.js.download"></script>
+	<script type="text/javascript">
+		function chkname(str) {
+			var newValue = str.value;
+			var newLength = newValue.length;
+			var extraChars = ". -,";
+
+			var iChars = "!@#$%^&*()+=-[]\\\';,./{}|\":<>?~_";
+			for (var i = 0; i < newLength; i++) {
+				if (iChars.indexOf(newValue.charAt(i)) != -1) {
+					alert("Only Alphabetic Characters are allowed.No Special characters are allowed");
+					str.value = '';
+					str.focus();
+					return false;
+					exit();
+				}
+			}
+		}
+
+		// browser start
+		var BrowserDetect = {
+			init: function () {
+				this.browser = this.searchString(this.dataBrowser) || "An unknown browser";
+				this.version = this.searchVersion(navigator.userAgent)
+					|| this.searchVersion(navigator.appVersion)
+					|| "an unknown version";
+				this.OS = this.searchString(this.dataOS) || "an unknown OS";
+			},
+			searchString: function (data) {
+				for (var i = 0; i < data.length; i++) {
+					var dataString = data[i].string;
+					var dataProp = data[i].prop;
+					this.versionSearchString = data[i].versionSearch || data[i].identity;
+					if (dataString) {
+						if (dataString.indexOf(data[i].subString) != -1)
+							return data[i].identity;
+					}
+					else if (dataProp)
+						return data[i].identity;
+				}
+			},
+			searchVersion: function (dataString) {
+				var index = dataString.indexOf(this.versionSearchString);
+				if (index == -1) return;
+				return parseFloat(dataString.substring(index + this.versionSearchString.length + 1));
+			},
+			dataBrowser: [
+				{
+					string: navigator.userAgent,
+					subString: "Chrome",
+					identity: "Chrome"
+				},
+				{
+					string: navigator.userAgent,
+					subString: "OmniWeb",
+					versionSearch: "OmniWeb/",
+					identity: "OmniWeb"
+				},
+				{
+					string: navigator.vendor,
+					subString: "Apple",
+					identity: "Safari",
+					versionSearch: "Version"
+				},
+				{
+					prop: window.opera,
+					identity: "Opera"
+				},
+				{
+					string: navigator.vendor,
+					subString: "iCab",
+					identity: "iCab"
+				},
+				{
+					string: navigator.vendor,
+					subString: "KDE",
+					identity: "Konqueror"
+				},
+				{
+					string: navigator.userAgent,
+					subString: "Firefox",
+					identity: "Firefox"
+				},
+				{
+					string: navigator.vendor,
+					subString: "Camino",
+					identity: "Camino"
+				},
+				{		// for newer Netscapes (6+)
+					string: navigator.userAgent,
+					subString: "Netscape",
+					identity: "Netscape"
+				},
+				{
+					string: navigator.userAgent,
+					subString: "MSIE",
+					identity: "Explorer",
+					versionSearch: "MSIE"
+				},
+				{
+					string: navigator.userAgent,
+					subString: "Gecko",
+					identity: "Mozilla",
+					versionSearch: "rv"
+				},
+				{ 		// for older Netscapes (4-)
+					string: navigator.userAgent,
+					subString: "Mozilla",
+					identity: "Netscape",
+					versionSearch: "Mozilla"
+				}
+			],
+			dataOS: [
+				{
+					string: navigator.platform,
+					subString: "Win",
+					identity: "Windows"
+				},
+				{
+					string: navigator.platform,
+					subString: "Mac",
+					identity: "Mac"
+				},
+				{
+					string: navigator.userAgent,
+					subString: "iPhone",
+					identity: "iPhone/iPod"
+				},
+				{
+					string: navigator.platform,
+					subString: "Linux",
+					identity: "Linux"
+				}
+			]
+		};
+
+		BrowserDetect.init();
+		// browser end
+		function getOperatingSystemName() {
+			OSName = BrowserDetect.OS;
+			return OSName;
+		}
+		//•Browser name: BrowserDetect.browser
+		//•Browser version: BrowserDetect.version
+		function brwversion() {
+			var browserVer = BrowserDetect.version;
+			return browserVer;
+		}
+
+		function brwname() {
+			var browserName = BrowserDetect.browser;
+			return browserName;
+		}
+
+		function brwdetection() {
+			var osn = getOperatingSystemName();
+			var brwver = brwversion();
+			var brwname1 = brwname();
+			if (brwname1 == 'IE') {
+				brwname1 = 'Internet Explorer';
+			}
+			if (brwver < 7) {
+				var str = "You are using " + brwname1 + " of Version " + brwver + " on Platform " + osn;
+				alert(str);
+				alert("You are Currently Using an older Version of the browser.This site is best viewed With IE 8.0 or above");
+			}
+		}
+
+		function changefees(value) {
+			if (value == '1') {
+				document.form1.feerem.selectedIndex = 0;
+			} else {
+				document.form1.feerem.selectedIndex = 1;
+			}
+			if (document.form1.sex.selectedIndex == 1) {
+				document.form1.feerem.selectedIndex = 1;
+			}
+		}
+		function changefees1(value) {
+			if ((value == '3') || (value == '4')) {
+				document.form1.feerem.selectedIndex = 0;
+			} else {
+				document.form1.feerem.selectedIndex = 1;
+			}
+			if (document.form1.sex.selectedIndex == 1) {
+				document.form1.feerem.selectedIndex = 1;
+			}
+		}
+		function phyhan() {
+			var z = document.getElementById("handicapp");
+			var x = document.getElementById("ycategory");
+			var y = document.getElementById("hcategory");
+			x.style.display = "none";
+			if (z.value == 2) {
+				x.style.display = "block";
+			} else {
+				y.value = "";
+			}
+		}
+
+		function ques() {
+			var q = document.getElementById("question");
+			var r = document.getElementById("rowa");
+			q1.value = "";
+			r.style.display = "none"
+			if (q.value == 99) {
+				r.style.display = "block"
+			}
+		}
+		function showeqdetails() {
+			var exam_code = document.form1.exam_code.value; //changed from form2 on 30/09/09
+			window.open('eqdetails.php?exam_code=' + exam_code, 'test', "status=0,toolbar=0,location=0,menubar=0,scrollbars=1,width=600,height=400");
+		}
+
+
+		function validform11() {
+			var userid = form1.UserID.value;
+			var password = form1.password.value;
+			if (userid == "" || password == "") {
+				var x = document.getElementById('note').insertRow(1);
+				var y = x.insertCell(0);
+				y.align = "center";
+				y.innerHTML = "<span style='color:#FF0000'>" + "Enter UserID OR Password" + "</span>";
+			}
+		}
+
+		function validate() {
+			if (document.LoginForm.userid.value == "") {
+				alert("Please enter a valid user-id ");
+				document.LoginForm.userid.focus();
+				return false;
+			} else if (document.LoginForm.password.value == "") {
+				alert("Please enter a valid  password to log in.");
+				document.LoginForm.password.focus();
+				return false;
+			} else if (document.LoginForm.phrase.value == "") {
+				alert("Please enter a Captch Code.");
+				document.LoginForm.phrase.focus();
+				return false;
+			} else {
+				document.LoginForm.password.value = get_hex('34685304662a4722f83e9d8.14665682', hex_md5(document.LoginForm.password.value));
+				return true;
+			}
+		}
+
+		function eyeCheck(elementId) {
+			var ele = document.getElementById(elementId);
+			if (ele.id == "eye1") {
+				document.getElementById('eye1').style.display = "none";
+				document.getElementById('password').type = "text";
+				document.getElementById('eye').style.display = "";
+			} else {
+				document.getElementById('eye').style.display = "none";
+				document.getElementById('password').type = "password";
+				document.getElementById('eye1').style.display = "";
+			}
+		}
+
+		function changeColour(which) {
+			which.value = which.value.replace(/^\s+/, "");
+			if (which.value.length > 2) {
+				which.style.background = '#FFFFFF';
+			}
+			else {
+				which.style.borderColor = "Red";
+				which.focus();
+				return false;
+			}
+		}
+
+		function blinkFont() {
+			document.getElementById("blink1").style.color = "black"
+			setTimeout("setblinkFont()", 500)
+		}
+
+		function setblinkFont() {
+			document.getElementById("blink1").style.color = ""
+			setTimeout("blinkFont()", 500)
+		}
+
+		function new_captcha() {
+			var c_currentTime = new Date();
+			var c_miliseconds = c_currentTime.getTime();
+
+			document.getElementById('captcha').src = 'captcha/image.php?x=' + c_miliseconds;
+		}
+	</script>
+</head>
+<body onload="new_captcha();blinkFont();brwdetection();">
+<!-- Header -->
+<div id="header">
+	<div class="shell">
+		<!-- Logo + Top Nav -->
+		<div id="top">
+			<h1><!--<a href="#">ONLINE RECRUTMENT APPLICATION</a>--></h1>
+		</div>
+		<!-- End Logo + Top Nav -->
+	</div>
+</div>
+<!-- End Header -->
+<!-- Container -->
+<div id="container">
+	<div class="shell" style="">
+		<!-- Small Nav -->
+		<!--<div  style=" color:#FFFFFF; font-size:14px; ">
+		<table width="100%"><tr><td width="50%">&nbsp;</td><td align="right">(Your Machine IP  Address - :<font id="blink1">183.82.119.60</font>)</td></tr></table>-->
+
+       </div>
+
+	<!--  <div class="small-nav" style=" background-color:#FFFFFF">
+		<a href="#">Personal Profile </a>
+			<span>&gt;</span>
+			Personal Profile </div>-->
+		<!-- End Small Nav -->
+
+		<!-- Message OK -->
+
+
+
+
+		<!-- Main -->
+		<div id="main">
+
+			<!-- Content -->
+			<div id="content">
+				<!-- Box -->
+				<div class="box" style="" id="loginform">
+					<!-- Box Head -->
+					<div class="box-head">
+						<h2 class="left">User Login </h2>
+					</div>
+					<!-- End Box Head -->
+						<!-- Table -->
+			<div>
+				<form name="LoginForm" method="post" action="https://upsconline.nic.in/ora/oraauth/candidate/LoginFinal.php" onsubmit="return validate();" autocomplete="off">
+					<div style="">
+						<table width="100%" class="front" style="background:transparent;">
+							<tbody><tr>
+								<td style="font-weight:bold;">Registration ID</td>
+								<td width="75%">
+									<input onblur="lowerFirstLetter(this)" name="userid" type="text" maxlength="8" id="userid" size="22" autocomplete="off" onfocus="return checkinnerhtml(this.value)" tabindex="2">
+									<span id="checkregistration"></span> <a href="https://upsconline.nic.in/ora/oraauth/candidate/forgot_regid.php" style="font-size:12px;">Forgot Registration ID</a>
+								</td>
+							</tr>
+							<tr>
+								<td style="font-weight:bold;">Password</td>
+								<td>
+									<input name="password" type="password" maxlength="20" id="password" size="22" tabindex="2">
+									<img onclick="eyeCheck(this.id)" id="eye1" height="18" width="20" src="./satamev_files/pwd_eye1.png">
+									<img onclick="eyeCheck(this.id)" id="eye" height="18" width="20" src="./satamev_files/pwd_eye.png" style="display:none;">
+									<a href="https://upsconline.nic.in/ora/oraauth/candidate/forgot_registration.php" style="font-size:12px;">Forgot Password</a><br><span class="note">[Password is Case Sensitive] <br></span>
+							  </td>
+							</tr>
+							<tr>
+								<td width="25%"><b>Confirm Random Image</b></td>
+								<td>
+									<img src="./satamev_files/image.php" style="padding-bottom:2px;" name="captcha" id="captcha" border="0">&nbsp;<a href="JavaScript: new_captcha();"></a><br><br>
+									<input type="text" name="phrase" id="phrase" maxlength="6" size="7" onchange="return chkname(this);" autocomplete="off" tabindex="2" style="">
+								</td>
+							</tr>
+													</tbody></table>
+					</div>
+
+					<div align="center" style="margin:30px 0;">
+						<input type="submit" value="Login" class="button" name="Submit2">
+						<a href="https://upsconline.nic.in/ora/VacancyNoticePub.php" style="margin-left:20px;">
+							<input class="button" value="Back" type="button">
+						</a>
+						<a style="float:right; margin-right:50px;" href="https://upsconline.nic.in/ora/RegistrationFinal.php">
+							<input type="button" value="New Registration" class="button" name="Submit2">
+						</a>
+					</div>
+				</form>
+			</div>
+
+			<!--end upper box-->
+
+			<div style=" color:#009966">
+				<table class="front" style="background:transparent;">
+					<tbody><tr>
+						<td width="2%" align="center"><img src="./satamev_files/pc.png"></td><td><strong>Application System Requirements</strong></td>
+					</tr>
+					<tr>
+						<td colspan="100%" style="padding-left:50px;">
+							<ul class="note">
+								<li>You will need a web browser that has javascript activated.</li>
+								<li> This site can be best viewed in latest version of Google Chrome, Mozilla Firefox and Internet Explorer,etc.</li>
+								<li> Pop-Up blockers should be disabled.  </li>
+								<li>You must logout of the online application after each session. </li>
+								<li>JavaScript should be enabled for your browser.<a style="font-size:11px; margin:0px;" href="https://upsconline.nic.in/ora/javascript.html" target="_blank">Click here</a> to know how to enable. </li>
+							</ul>
+						</td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+		<!-- End Box -->
+	</div>
+		<!-- End Content -->
+	<!-- Main -->
+</div>
+</div>
+
+<script>
+function checkinnerhtml(valueoftextbox) {
+    if (valueoftextbox == '') {
+        document.getElementById("checkregistration").innerHTML = '';
+    }
+}
+function lowerFirstLetter(string) {
+    var str = string.value.toLowerCase();
+    document.getElementById(string.id).value = str;
+}
+
+function showPassword() {
+    document.getElementById('hideimage').style.display = "block";
+    document.getElementById('showimage').style.display = "none";
+    var x = document.getElementById("DesiredPassword");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+}
+
+function hidePass() {
+    document.getElementById('hideimage').style.display = "none";
+    document.getElementById('showimage').style.display = "block";
+    var x = document.getElementById("DesiredPassword");
+
+    if (x.type === "text") {
+        x.type = "password";
+    } else {
+        x.type = "text";
+    }
+}
+
+</script>
+<!-- End Container -->
+
+
+
+<script>
+function goBack() {
+    window.history.back();
+}
+</script></body></html>

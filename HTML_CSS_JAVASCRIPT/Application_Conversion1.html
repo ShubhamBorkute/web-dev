@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Application for Convention</title>
+ </head>
+ <body>
+ <table align="center" style="background:#66ccff;">
+ <caption style ="color:#330000;"><h2> Unit Coversion </h2><caption>
+ <tr>
+ <td><label> Killogram </label></td>
+ <td><label> Pound </label></td>
+ </tr>
+
+ <tr>
+ <td><input type="text" id="kg"/></td>
+ <td><input type="text" id="pd" readonly /> </td>
+
+ </tr>
+ <tr align="center">
+ <td colspan="2">
+ <button id="bt" style="color:#33ff00;">Convert </button></td>
+ </tr>
+ <tr>
+ <td>&nbsp;</td>
+ </tr>
+  </table>
+ <script>
+document.getElementById("bt").onclick=function(){
+	const kgtb=document.getElementById("kg");
+	const pgtb=document.getElementById("pd");
+	let res= kgtb.value*2.20462;
+	pgtb.value=res;
+	};
+
+
+
+
+ </script>
+ </body>
+</html>

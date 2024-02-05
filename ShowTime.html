@@ -1,0 +1,34 @@
+<!-- example on timer function -->
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <meta charset="UTF-8">
+   <title>Dom</title>
+	<script>
+		function showClock()
+		{
+			let d = new Date();
+			let head = document.getElementById("h");
+			head.innerText=d.toLocaleTimeString();
+		}
+		function changeBGColor()
+		{
+			let c = "#"+parseInt(Math.random()*1000000);
+			document.getElementById("b").style.backgroundColor=c;
+		}
+	</script>
+ </head>
+ <body id="b">	
+		<h3>demo on timer functions</h3>
+		<h3 id="h"> </h3>
+		<button id="bt">Stop</button>
+	<script>
+		setInterval( showClock  , "1000");  //for every 1sec it calls showClock()
+		let x = setInterval( changeBGColor , "3000");  //for every 3sec color changing
+		document.getElementById("bt").onclick=function(){
+														window.clearInterval(x);
+													};
+	</script>
+
+ </body>
+</html>

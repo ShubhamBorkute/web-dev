@@ -1,0 +1,157 @@
+// JavaScript Document
+function getXMLHttp()
+{
+  var xmlHttp
+
+  try
+  {
+    //Firefox, Opera 8.0+, Safari
+    xmlHttp = new XMLHttpRequest();
+  }
+  catch(e)
+  {
+    //Internet Explorer
+    try
+    {
+      xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");
+    }
+    catch(e)
+    {
+      try
+      {
+        xmlHttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+      catch(e)
+      {
+        alert("Your browser does not support AJAX!")
+        return false;
+      }
+    }
+  }
+  return xmlHttp;
+}
+
+
+
+/////////////
+//login page 
+function check_regid()
+{
+	var registration_id = document.getElementById("userid").value;// fetch the type value 
+	document.getElementById("checkregistration").innerHTML = '<img src="css/images/loading_bar.gif" height="25px;" width="25px;"/>';
+	xmlHttp_spbr = GetXmlHttpObject();
+	
+	if (xmlHttp_spbr == null)
+	{
+		alert ("Your browser does not support AJAX!");
+		return false;
+	} 
+	var url="include/ajex/ajex_function.php";
+    url=url+"?action=check_regid";
+	url=url+"&registration_id="+registration_id;
+	url=url+"&sid="+Math.random();
+	xmlHttp_spbr.onreadystatechange = exist_notexist_regid;
+	xmlHttp_spbr.open("GET",url,true);
+	xmlHttp_spbr.send(null);	
+}
+
+function exist_notexist_regid()
+{
+	if(xmlHttp_spbr.readyState == 4)
+	{
+		var existalready = xmlHttp_spbr.responseText;
+		
+		if(trim(existalready)=='Y')
+		 {
+			 
+			document.getElementById("checkregistration").innerHTML = '<img src="css/images/ok_sign.png" height="15px;" width="15px;"/>';
+			document.getElementById('password').disabled =false;
+		 }
+		 else
+		 {
+			 if(trim(existalready)=='N')
+		 	{
+			 document.getElementById("checkregistration").innerHTML = '<img src="css/images/cross_sign.gif" height="15px;" width="15px;"/>';
+			 document.getElementById('password').disabled =true;
+			 document.getElementById('password').value ='';
+			 }
+		 }
+	 }
+}
+//feedback
+function regid()
+{
+	var registration_idfeed = document.getElementById("reg").value;// fetch the type value 
+	document.getElementById("checkregistration").innerHTML = '<img src="css/images/loading_bar.gif" height="25px;" width="25px;"/>';
+	xmlHttp_spbr = GetXmlHttpObject();
+	if (xmlHttp_spbr == null)
+	{
+		alert ("Your browser does not support AJAX!");
+		return false;
+	} 
+	var url="include/ajex/ajex_function.php";
+    url=url+"?action=check_regidfeedback";
+	url=url+"&registration_idfeed="+registration_idfeed;
+	url=url+"&sid="+Math.random();
+	xmlHttp_spbr.onreadystatechange = exist_notexist_regid_feedback;
+	xmlHttp_spbr.open("GET",url,true);
+	xmlHttp_spbr.send(null);	
+}
+
+function exist_notexist_regid_feedback()
+{
+	if(xmlHttp_spbr.readyState == 4)
+	{
+		var existalready = xmlHttp_spbr.responseText;
+		
+		if(trim(existalready)=='Y')
+		 {
+			document.getElementById("checkregistration").innerHTML = '<img src="css/images/ok_sign.png" height="15px;" width="15px;"/>';
+		 }
+		 else
+		 {
+			 document.getElementById("checkregistration").innerHTML = '<img src="css/images/cross_sign.gif" height="15px;" width="15px;"/>';
+			 
+		 }
+	 }
+}
+
+
+
+
+
+
+
+
+
+
+//trim function........
+function trim(str)
+{
+    if(!str || typeof str != 'string')
+        return null;
+
+    return str.replace(/^[\s]+/,'').replace(/[\s]+$/,'').replace(/[\s]{2,}/,' ');
+}
+
+
+function GetXmlHttpObject()
+{
+	var xmlHttp=null;
+	try
+	{			
+		xmlHttp = new XMLHttpRequest();// Firefox, Opera 8.0+, Safari
+	}
+	catch (e)
+	{
+		try
+		{
+			xmlHttp = new ActiveXObject("Msxml2.XMLHTTP");	// Internet Explorer
+		}
+		catch (e)
+		{
+			xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+		}
+	}
+	return xmlHttp;
+}
